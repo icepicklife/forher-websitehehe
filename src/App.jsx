@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import './App.css';
 
+import herImg from './assets/her-shades.jpg/';
+
 function App() {
   const [step, setStep] = useState(0);
   const [noCount, setNoCount] = useState(0);
@@ -155,6 +157,13 @@ function App() {
         {/* Frame 2*/}
         {step === 1 && (
           <>
+
+            <img
+              src={herImg}
+              alt="cute mo paege"
+              className="rounded-image"
+            ></img>
+
             <h1>Cute mo <br/> naman miss</h1>
             <button className="btn" onClick={handleNext}>hihi thank you &gt;</button>
           </>

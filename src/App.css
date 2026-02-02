@@ -19,6 +19,15 @@ body {
   max-width: 90vw;
 }
 
+.rounded-image {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid #3b2a2a;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
 h1 {
   color: #3b2a2a;
   font-size: 2.5rem;
