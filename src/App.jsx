@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import confetti from 'canvas-confetti';
 import './App.css';
 
 function App() {
@@ -29,6 +30,60 @@ function App() {
     "iiyak na ko dito oh 🥲",
     "himlay nalang sa sakit sau 😔"
   ]
+
+  useEffect(() => {
+
+    if (step === 4) {
+
+      document.body.style.backgroundColor = '#ffe4f7'
+
+      const scalar = 6;
+      const rose = confetti.shapeFromText({ text: '🌹', scalar });
+      const cherry = confetti.shapeFromText({ text: '🌸', scalar });
+
+      const defaults = {
+        spread: 360,
+        ticks: 60,
+        gravity: 0,
+        decay: 0.96,
+        startVelocity: 20,
+        shapes: [rose, cherry],
+        scalar: scalar,
+      };
+
+      const interval = setInterval(() => {
+
+        const randomX = Math.random();
+
+        confetti({
+          ...defaults,
+          particleCount: 100, 
+          origin: { x: randomX * 0.5, y: 0 } // Random spot on left half
+        });
+
+        // Burst 2: Right side area (Fills the screen faster!)
+        confetti({
+          ...defaults,
+          particleCount: 100, 
+          origin: { x: 0.5 + randomX * 0.5, y: 0 } // Random spot on right half
+        });
+        
+        // Extra filler confetti (small circles)
+        confetti({
+          ...defaults,
+          particleCount: 50,
+          scalar: 1, 
+          shapes: ['circle']
+        });
+
+      }, 500); 
+
+      return () => {
+        clearInterval(interval),
+        document.body.style.backgroundColor = '#f9f9f9';
+      };
+    }
+  }, [step]);
 
   const handleNext = () => {
     setStep(step + 1);
